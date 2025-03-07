@@ -21,7 +21,8 @@ func main() {
 			fmt.Fprintln(os.Stderr, "Error reading input", err)
 			os.Exit(1)
 		}
-		args := strings.Split(command[:len(command)-1], " ")
+		command = command[:len(command)-1]
+		args := strings.Split(command, " ")
 		switch args[0] {
 		case "exit":
 			if args[1] == "0" {

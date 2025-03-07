@@ -30,7 +30,7 @@ func main() {
 		case "echo":
 			fmt.Println(command[5:])
 		default:
-			fmt.Println(args[0] + ": command not found")
+			fmt.Println(command + ": command not found")
 		}
 
 	}

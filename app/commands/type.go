@@ -10,6 +10,6 @@ func Type(args []string, builtin []string) {
 	if is_builtin {
 		fmt.Println(args[1] + " is a shell builtin")
 	} else {
-		fmt.Println(args[1] + ": command not found")
+		fmt.Println(args[1] + ": not found")
 	}
 }

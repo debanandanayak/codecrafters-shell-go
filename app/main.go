@@ -20,11 +20,12 @@ func main() {
 			fmt.Fprintln(os.Stderr, "Error reading input", err)
 			os.Exit(1)
 		}
+		command = command[:len(command)-1]
 		switch command {
 		case "exit 0":
 			os.Exit(0)
 		default:
-			fmt.Println(command[:len(command)-1] + ": command not found")
+			fmt.Println(command + ": command not found")
 		}
 
 	}

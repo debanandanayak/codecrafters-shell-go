@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/codecrafters-io/shell-starter-go/app/commands"
 )
 
 // Ensures gofmt doesn't remove the "fmt" import in stage 1 (feel free to remove this!)
@@ -21,6 +23,8 @@ func main() {
 			fmt.Fprintln(os.Stderr, "Error reading input", err)
 			os.Exit(1)
 		}
+		built_in_list := []string{"exit", "echo", "type"}
+
 		command = command[:len(command)-1]
 		args := strings.Split(command, " ")
 		switch args[0] {
@@ -29,7 +33,9 @@ func main() {
 				os.Exit(0)
 			}
 		case "echo":
-			fmt.Println(command[5:])
+			commands.Echo(command)
+		case "type":
+			commands.Type(args, built_in_list)
 		default:
 			fmt.Println(command + ": command not found")
 		}

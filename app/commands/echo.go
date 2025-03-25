@@ -2,6 +2,6 @@ package commands
 
 import "fmt"
 
-func Echo(command string) {
-	fmt.Println(command[5:])
+func Echo(str string) {
+	fmt.Println(str)
 }

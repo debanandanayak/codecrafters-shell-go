@@ -2,14 +2,33 @@ package commands
 
 import (
 	"fmt"
+	"os"
 	"slices"
+
+	"github.com/codecrafters-io/shell-starter-go/app/constants"
 )
 
-func Type(args []string, builtin []string) {
-	is_builtin := slices.Contains(builtin, args[1])
+var built_in_list = []string{"exit", "echo", "type"}
+
+func Type(command string) {
+
+	is_builtin := slices.Contains(built_in_list, command)
 	if is_builtin {
-		fmt.Println(args[1] + " is a shell builtin")
+		fmt.Printf("%s is a shell builtin\n", command)
+		return
 	} else {
-		fmt.Println(args[1] + ": not found")
+		paths := constants.GetPaths()
+
+		for _, path := range paths {
+			entries, _ := os.ReadDir(path)
+			for _, entry := range entries {
+				if entry.Name() == command {
+					fmt.Printf("%s is %s/%s\n", command, path, command)
+					return
+				}
+			}
+		}
+
 	}
+	fmt.Printf("%s: not found\n", command)
 }

@@ -14,6 +14,7 @@ var _ = fmt.Fprint
 
 func main() {
 	// Uncomment this block to pass the first stage
+
 	for {
 		fmt.Fprint(os.Stdout, "$ ")
 
@@ -23,7 +24,6 @@ func main() {
 			fmt.Fprintln(os.Stderr, "Error reading input", err)
 			os.Exit(1)
 		}
-		built_in_list := []string{"exit", "echo", "type"}
 
 		command = command[:len(command)-1]
 		args := strings.Split(command, " ")
@@ -33,9 +33,9 @@ func main() {
 				os.Exit(0)
 			}
 		case "echo":
-			commands.Echo(command)
+			commands.Echo(command[5:])
 		case "type":
-			commands.Type(args, built_in_list)
+			commands.Type(args[1])
 		default:
 			fmt.Println(command + ": command not found")
 		}
